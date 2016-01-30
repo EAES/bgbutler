@@ -1,0 +1,14 @@
+[
+	{ "id":"1", "name":"Dark Moon", "download":"", "author":"" },
+	{ "id":"2", "name":"The Resistance", "download":"https://boardgamegeek.com/filepage/74583/rules-summary-1-page", "author":"Benjamin Maggi"},
+	{ "id":"3", "name":"King of Tokyo", "download":"https://boardgamegeek.com/filepage/81987/king-tokyo-rules-summary", "author":"Grimnir"},
+	{ "id":"4", "name":"Citadels", "download":"https://boardgamegeek.com/filepage/27377/citadels-rules-summary", "author":"Grimnir"},
+	{ "id":"5", "name":"Small World", "download":"https://boardgamegeek.com/filepage/47956/small-world-rules-summary", "author":"Grimnir"},
+	{ "id":"6", "name":"7 Wonders", "download":"https://boardgamegeek.com/filepage/62296/7-wonders-rules-summary", "author":"Grimnir"},
+	{ "id":"7", "name":"The Castles of Burgundy", "download":"https://boardgamegeek.com/filepage/66349/castles-burgundy-quick-reference", "author":"Ajax"},
+	{ "id":"8", "name":"Carcassonne", "download":"https://boardgamegeek.com/filepage/101097/carcassonne-overview-and-teaching-aid", "author":"Seany4"},
+	{ "id":"9", "name":"Five Tribes: The Djinns of Naqala", "download":"", "author":""},
+	{ "id":"9", "name":"Dominant Species", "download":"", "author":""},
+	{ "id":"10", "name":"Among the Stars", "download":"", "author":""},
+	{ "id":"11", "name":"The Settlers of Catan", "download":"", "author":""}
+]

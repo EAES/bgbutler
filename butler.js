@@ -1,5 +1,27 @@
 var app = angular.module('bgbutler', []);
 
+app.service('houseCollectionService', function($http, $log){
+
+	var houseCollection = new Array;
+
+	this.getCollection =  function(){
+		$http({
+		  method: 'GET',
+		  url: 'data/games.json'
+		}).then(function successCallback(response) {
+			for(var i = 0; i < response.data.length; i++) {
+				houseCollection.push(response.data[i]);
+			};
+		    
+		  }, function errorCallback(response) {
+		    $log.log(":c");
+		  });
+
+		return houseCollection;
+	}
+	
+});
+
 app.service('BggCollectionService', function($http, $log){
 
 	var collection = [];
@@ -15,8 +37,8 @@ app.service('BggCollectionService', function($http, $log){
             }
         })
         .success(function(data, status) {
-        	$log.info('success');
-        	$log.info(status);
+        	// $log.info('success');
+        	// $log.info(status);
 
         	$(data).find('item').each(function () {
 	    		if($(this).find('status').attr('own') === '1') {
@@ -40,8 +62,9 @@ app.service('BggCollectionService', function($http, $log){
 	}
 });
 
-app.controller('GameController', ['$scope','BggCollectionService', function($scope, BggCollectionService){
+app.controller('GameController', ['$scope','houseCollectionService','BggCollectionService', function($scope, houseCollectionService, BggCollectionService){
 	$scope.bggCollection =  BggCollectionService.getCollection("homemadehugmachine");
+	$scope.houseCollection =  houseCollectionService.getCollection();
 }]);
 
 app.controller('GuideController', ['$scope', function($scope){

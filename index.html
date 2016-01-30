@@ -1,0 +1,26 @@
+<!doctype html>
+<!DOCTYPE html>
+<html ng-app="bgbutler">
+<head>
+	<title>BGB</title>
+</head>
+<body>
+<div ng-controller="GameController">
+<!-- <pre>{{ bggCollection | json }}</pre> -->
+
+<select>
+	<option ng-repeat="game in bggCollection">{{ game.name }} ({{ game.yearpublished }})</option>
+	option
+</select>
+	
+</div>
+
+<div ng-controller="GuideController">
+	<p>{{ selectedguide }}</p>
+</div>
+
+</body>
+<script src="jquery-1.12.0.min.js"></script>
+<script src="angular.min.js"></script>
+<script src="butler.js"></script>
+</html>

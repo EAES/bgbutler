@@ -14,7 +14,7 @@ app.service('houseCollectionService', function($http, $log){
 			};
 		    
 		  }, function errorCallback(response) {
-		    $log.log(":c");
+		    $log.log("can't get house collection");
 		  });
 
 		return houseCollection;
@@ -63,6 +63,7 @@ app.service('BggCollectionService', function($http, $log){
 });
 
 app.controller('GameController', ['$scope','houseCollectionService','BggCollectionService', function($scope, houseCollectionService, BggCollectionService){
+	
 	$scope.bggCollection =  BggCollectionService.getCollection("homemadehugmachine");
 	$scope.houseCollection =  houseCollectionService.getCollection();
 }]);

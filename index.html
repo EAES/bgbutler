@@ -1,29 +1,47 @@
-<!doctype html>
 <!DOCTYPE html>
 <html ng-app="bgbutler">
-<head>
-	<title>BGB</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-</head>
-<body>
-<div ng-controller="GameController">
+	<head>
+		<title>BGB</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	</head>
 
-<select>
-	<option ng-repeat="game in houseCollection">{{ game.name }} ({{ game.yearpublished }})</option>
-</select>
+	<body class="container">
+		<div ng-controller="GameController">
 
-<pre>{{ houseCollection | json }}</pre>
-<pre>{{ bggCollection | json }}</pre>
-	
-</div>
+			<h1>Welcome to BoardGameButler</h1>
+			
+			<form class="form-grop">
+			<h5>select game</h5>
 
-<div ng-controller="GuideController">
-	<p>{{ selectedguide }}</p>
-</div>
+			<select class="form-control input-lg">
+				<option ng-repeat="game in houseCollection">{{ game.name }} ({{ game.yearpublished }})</option>
+			</select>
 
-</body>
-<script src="js/jquery-1.12.0.min.js"></script>
-<script src="js/angular.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/butler.js"></script>
+			<hr />
+
+			<h6>or connect to your BGG account</h6>
+
+			<input class="form-control input-lg" 
+				   type="text"
+				   name="bgguser"
+				   value=""
+				   placeholder="Enter your BGG username">
+			<button type="submit"
+					class="btn btn-info btn-lg btn-block">Submit</button>
+			</form>
+
+			<pre class="hidden">{{ houseCollection | json }}</pre>
+			<pre class="hidden">{{ bggCollection | json }}</pre>
+				
+		</div>
+
+		<div class="container" ng-controller="GuideController">
+			<p>guide here</p>
+		</div>
+
+	</body>
+	<script src="js/jquery-1.12.0.min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/butler.js"></script>
 </html>

@@ -37,8 +37,6 @@ app.service('BggCollectionService', function($http, $log){
             }
         })
         .success(function(data, status) {
-        	// $log.info('success');
-        	// $log.info(status);
 
         	$(data).find('item').each(function () {
 	    		if($(this).find('status').attr('own') === '1') {
@@ -62,10 +60,16 @@ app.service('BggCollectionService', function($http, $log){
 	}
 });
 
-app.controller('GameController', ['$scope','houseCollectionService','BggCollectionService', function($scope, houseCollectionService, BggCollectionService){
-	
-	$scope.bggCollection =  BggCollectionService.getCollection("homemadehugmachine");
+app.controller('GameController', ['$scope','$log','houseCollectionService','BggCollectionService', function($scope, $log, houseCollectionService, BggCollectionService){
+
+	//$scope.bggCollection =  BggCollectionService.getCollection("homemadehugmachine");
 	$scope.houseCollection =  houseCollectionService.getCollection();
+	$scope.selectMessage = "Choose A Game...";
+
+	$scope.getBggCollection = function(){
+		$log.log($scope.bggUser);
+		$scope.houseCollection = BggCollectionService.getCollection($scope.bggUser);
+	}
 }]);
 
 app.controller('GuideController', ['$scope', function($scope){

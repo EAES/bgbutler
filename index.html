@@ -12,11 +12,13 @@
 			
 			<form class="form-grop">
 
-			<select class="form-control input-lg">
-				<option>{{ selectMessage }}</option>}
-				option
-				<option ng-repeat="game in houseCollection">{{ game.name }} ({{ game.yearpublished }})</option>
+			<select class="form-control input-lg"
+					ng-model="selectedGame"
+					ng-options="game.name for game in houseCollection track by game.name">
+				<option value="">Select game</option>
+				<!-- <option ng-repeat="game in houseCollection">{{ game.name }} ({{ game.yearpublished }})</option> -->
 			</select>
+			{{ selectedGame.name }}
 
 			<hr />
 

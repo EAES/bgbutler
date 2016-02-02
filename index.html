@@ -14,7 +14,7 @@
 
 			<select class="form-control input-lg"
 					ng-model="selectedGame"
-					ng-options="game.name for game in houseCollection track by game.name">
+					ng-options="game.name for game in houseCollection | orderBy:'name' track by game.name">
 				<option value="">Select game</option>
 				<!-- <option ng-repeat="game in houseCollection">{{ game.name }} ({{ game.yearpublished }})</option> -->
 			</select>

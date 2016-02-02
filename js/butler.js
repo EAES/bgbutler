@@ -2,22 +2,16 @@ var app = angular.module('bgbutler', []);
 
 app.service('houseCollectionService', function($http, $log){
 
-	var houseCollection = new Array;
-
 	this.getCollection =  function(){
-		$http({
-		  method: 'GET',
-		  url: 'data/games.json'
-		}).then(function successCallback(response) {
-			for(var i = 0; i < response.data.length; i++) {
-				houseCollection.push(response.data[i]);
-			};
-		    
-		  }, function errorCallback(response) {
+		var promise = $http({method: 'GET',url: 'data/games.json'});
+		promise.then(function success(response) {
+			return response.data;		    
+		  },
+		  function error(response) {
 		    $log.log("can't get house collection");
 		  });
 
-		return houseCollection;
+		return promise;
 	}
 	
 });
@@ -63,8 +57,9 @@ app.service('BggCollectionService', function($http, $log){
 app.controller('GameController', ['$scope','$log','houseCollectionService','BggCollectionService', function($scope, $log, houseCollectionService, BggCollectionService){
 
 	//$scope.bggCollection =  BggCollectionService.getCollection("homemadehugmachine");
-	$scope.houseCollection =  houseCollectionService.getCollection();
-	$scope.selectMessage = "Choose A Game...";
+	houseCollectionService.getCollection().then(function(response){
+		$scope.houseCollection =  response.data;
+	});
 
 	$scope.getBggCollection = function(){
 		$log.log($scope.bggUser);

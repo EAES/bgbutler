@@ -1,53 +1,23 @@
 <!DOCTYPE html>
 <html ng-app="bgbutler">
 	<head>
+		<base href="/">
 		<title>BGB</title>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 	</head>
 
 	<body class="container">
-		<div ng-controller="GameController">
-
-			<h1>Welcome to BoardGameButler</h1>
-			
-			<form class="form-grop">
-
-			<select class="form-control input-lg"
-					ng-model="selectedGame"
-					ng-options="game.name for game in houseCollection | orderBy:'name' track by game.name">
-				<option value="">Select game</option>
-				<!-- <option ng-repeat="game in houseCollection">{{ game.name }} ({{ game.yearpublished }})</option> -->
-			</select>
-			{{ selectedGame.name }}
-
-			<hr />
-
-			<h6>or connect to your BGG account</h6>
-
-			<input class="form-control input-lg" 
-				   type="text"
-				   name="bgguser"
-				   value=""
-				   placeholder="Enter your BGG username"
-				   ng-model="bggUser">
-				   {{ bggUser }}
-			<button type="submit"
-					class="btn btn-info btn-lg btn-block"
-					ng-click="getBggCollection(bggUser)">Submit</button>
-			</form>
-
-			<pre class="hidden">{{ houseCollection | json }}</pre>
-			<pre class="hidden">{{ bggCollection | json }}</pre>
-				
-		</div>
-
-		<div class="container" ng-controller="GuideController">
-			<p>guide here</p>
-		</div>
-
+		<div ui-view></div>
 	</body>
-	<script src="js/jquery-1.12.0.min.js"></script>
-	<script src="js/angular.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/butler.js"></script>
+
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+	
+	<script src="app/app.js"></script>
+	<script src="app/modules/home/home.service.js"></script>
+	<script src="app/modules/home/home.js"></script>
+	<script src="app/common/bgg/bggcollection.service.js"></script>
 </html>

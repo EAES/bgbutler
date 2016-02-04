@@ -9,7 +9,7 @@ angular
 	var collection = [];
 
 	this.getCollection = function(bggUser){
-		$http({
+		var promise = $http({
             method  : 'GET',
             url     : 'https://cors-anywhere.herokuapp.com/https://www.boardgamegeek.com/xmlapi2/collection?username='+bggUser+'&subtype=boardgame&stats=1',
             timeout : 10000,
@@ -17,16 +17,17 @@ angular
             transformResponse : function(data) {
                 return $.parseXML(data);
             }
-        })
-        .success(function(data, status) {
-        	self.putInCollection(data);
-            
-        })
-        .error(function(data, status) {
-            $log.error('error');
         });
+        
+        promise.then(function success(response) {
+        	return response.data;
+            
+        }, function error(response) {
+            $log.error('error' + response);
+        	}
+        );
 		
-		return  collection;
+		return  promise;
 	}
 
 	this.putInCollection = function(data){
@@ -41,6 +42,8 @@ angular
 				collection.push(item);
 	    	}
 		});
+
+		return collection;
 	}
 
 });

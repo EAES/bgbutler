@@ -20,8 +20,12 @@ angular
 			$scope.houseCollection =  response.data;
 		});
 
-		$scope.getBggCollection = function(){			
-			$scope.houseCollection = bggService.getCollection($scope.bggUser);
+		$scope.getBggCollection = function(){
+			bggService.getCollection($scope.bggUser)
+				.then(function(response){
+					$scope.houseCollection = bggService.putInCollection(response.data);
+
+				})
 
 		}
 	}]);

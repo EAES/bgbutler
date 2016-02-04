@@ -27,12 +27,7 @@ angular
 					var arrA = $scope.houseCollection;
 					var arrB = bggService.putInCollection(response.data);
 					
-					// $log.debug(arrA);
 					$scope.houseCollection = matchService.getMatches(arrA, arrB);
-
-
-
-					//$scope.houseCollection = bggService.putInCollection(response.data);
 
 				})
 

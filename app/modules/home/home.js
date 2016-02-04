@@ -14,7 +14,7 @@ angular
 
 	}])
 
-	.controller('HomeController', ['homeService','bggService','$scope','$log', function(homeService, bggService, $scope, $log){
+	.controller('HomeController', ['homeService','bggService','matchService','$scope','$log', function(homeService, bggService, matchService, $scope, $log){
 		
 		homeService.getCollection().then(function(response){
 			$scope.houseCollection =  response.data;
@@ -23,7 +23,16 @@ angular
 		$scope.getBggCollection = function(){
 			bggService.getCollection($scope.bggUser)
 				.then(function(response){
-					$scope.houseCollection = bggService.putInCollection(response.data);
+					
+					var arrA = $scope.houseCollection;
+					var arrB = bggService.putInCollection(response.data);
+					
+					// $log.debug(arrA);
+					$scope.houseCollection = matchService.getMatches(arrA, arrB);
+
+
+
+					//$scope.houseCollection = bggService.putInCollection(response.data);
 
 				})
 

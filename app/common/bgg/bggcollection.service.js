@@ -1,31 +1,14 @@
 (function(){
 'use strict'
 
-var collection = [];
-
-function putInCollection(data){
-	$(data).find('item').each(function () {
-		if($(this).find('status').attr('own') === '1') {
-    		var item={
-				id: $(this).attr('objectid'),
-				name: $(this).find('name').text(),
-				thumbnail: $(this).find('thumbnail').text(),
-				yearpublished: $(this).find('yearpublished').text()
-			};
-			
-			collection.push(item);
-    	}
-	});
-
-}
-
 angular
 	.module('bgbutler')
-
 	.service('bggService', function($http, $log){
 
-	this.getCollection = function(bggUser){
+	var self = this;
+	var collection = [];
 
+	this.getCollection = function(bggUser){
 		$http({
             method  : 'GET',
             url     : 'https://cors-anywhere.herokuapp.com/https://www.boardgamegeek.com/xmlapi2/collection?username='+bggUser+'&subtype=boardgame&stats=1',
@@ -36,7 +19,7 @@ angular
             }
         })
         .success(function(data, status) {
-        	putInCollection(data);
+        	self.putInCollection(data);
             
         })
         .error(function(data, status) {
@@ -45,6 +28,20 @@ angular
 		
 		return  collection;
 	}
-});
 
+	this.putInCollection = function(data){
+		$(data).find('item').each(function () {
+			if($(this).find('status').attr('own') === '1') {
+	    		var item={
+					id: $(this).attr('objectid'),
+					name: $(this).find('name').text(),
+					thumbnail: $(this).find('thumbnail').text(),
+					yearpublished: $(this).find('yearpublished').text()
+				};
+				collection.push(item);
+	    	}
+		});
+	}
+
+});
 })();

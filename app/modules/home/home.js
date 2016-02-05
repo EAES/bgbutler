@@ -27,19 +27,26 @@ angular
 			$scope,
 			$log
 		){
+
+		var mainCollection = [];
 		
 		homeService.getCollection().then(function(response){
 			$scope.houseCollection =  response.data;
+			mainCollection = response.data;
 		});
 
 		$scope.getBggCollection = function(){
+			
+
 			bggService.getCollection($scope.bggUser)
 				.then(function(response){
 					
-					var arrA = $scope.houseCollection;
+					var arrA = mainCollection;
 					var arrB = bggService.putInCollection(response.data);
-					
+
 					$scope.houseCollection = matchService.getMatches(arrA, arrB);
+					
+					
 
 				})
 

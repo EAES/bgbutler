@@ -14,7 +14,19 @@ angular
 
 	}])
 
-	.controller('HomeController', ['homeService','bggService','matchService','$scope','$log', function(homeService, bggService, matchService, $scope, $log){
+	.controller('HomeController',[
+		'homeService',
+		'bggService',
+		'matchService',
+		'$scope',
+		'$log',
+		function(
+			homeService,
+			bggService,
+			matchService,
+			$scope,
+			$log
+		){
 		
 		homeService.getCollection().then(function(response){
 			$scope.houseCollection =  response.data;

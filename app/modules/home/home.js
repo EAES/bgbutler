@@ -37,8 +37,8 @@ angular
 
 		$scope.getBggCollection = function(){
 
-			$scope.bgginfo = bggService;
-			$scope.matchinfo = '';
+			$scope.bggInfo = bggService;
+			$scope.matchInfo = '';
 			
 			bggService.getCollection($scope.bggUser)
 
@@ -46,16 +46,18 @@ angular
 					
 					var arrA = mainCollection;
 					var arrB = bggService.putInCollection(response.data);
+					var user = bggService.bggName;
 
 					$scope.houseCollection = matchService.getMatches(arrA, arrB);
+					$scope.personalGreeting = (user + "\'s games");
 
 					if( ($scope.houseCollection).length === 0 && bggService.status === ''){
-						$scope.matchinfo = 'Sorry, we don\'t have any of your games right now.';
+						$scope.personalGreeting = '';
+						$scope.houseCollection = mainCollection;
+						$scope.matchInfo = 'Sorry, we don\'t have any of your games right now.';
 					} else {
-						$scope.matchinfo = '';
+						$scope.matchInfo = '';
 					}
-
-					
 				})
 
 		}

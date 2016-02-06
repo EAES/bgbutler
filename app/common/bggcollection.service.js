@@ -7,11 +7,11 @@ angular
 
 	var self = this;
 	var collection = [];
-	var bggName = '';
+	this.bggName = '';
 
 	this.getCollection = function(bggUser){
 		self.bggName = bggUser
-		self.status = 'Connecting...';
+		self.status = 'Loading...';
 		var result = '';
 		var promise = $http({
             method  : 'GET',

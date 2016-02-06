@@ -5,7 +5,7 @@
 <select class="form-control input-lg"
 		ng-model="selectedGame"
 		ng-options="game.name for game in houseCollection | orderBy:'name' track by game.name">
-	<option value="">Choose a game</option>
+	<option value="">{{ personalGreeting || "Choose a game" }}</option>
 </select>
 {{ selectedGame.name }}
 
@@ -20,10 +20,10 @@
 	   required="required"
 	   placeholder="Enter your BGG username"
 	   ng-model="bggUser">
-	   {{ matchinfo }}
+	   {{ matchInfo }}
 
 <button type="submit"
 		class="btn btn-info btn-lg btn-block"
-		>{{ bgginfo.status || "Submit"}}</button>
+		>{{ bggInfo.status || "Submit"}}</button>
 </form>
 

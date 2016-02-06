@@ -36,21 +36,29 @@ angular
 		});
 
 		$scope.getBggCollection = function(){
-			
 
+			$scope.bgginfo = bggService;
+			$scope.matchinfo = '';
+			
 			bggService.getCollection($scope.bggUser)
+
 				.then(function(response){
 					
 					var arrA = mainCollection;
 					var arrB = bggService.putInCollection(response.data);
 
 					$scope.houseCollection = matchService.getMatches(arrA, arrB);
-					
-					
 
+					if( ($scope.houseCollection).length === 0 && bggService.status === ''){
+						$scope.matchinfo = 'Sorry, we don\'t have any of your games right now.';
+					} else {
+						$scope.matchinfo = '';
+					}
+
+					
 				})
 
 		}
-	}]);
+}]);
 
 })();

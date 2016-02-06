@@ -1,12 +1,11 @@
 <h1>Welcome to BoardGameButler</h1>
 			
-<form class="form-grop">
+<form class="form-grop" ng-submit="getBggCollection(bggUser)">
 
 <select class="form-control input-lg"
 		ng-model="selectedGame"
 		ng-options="game.name for game in houseCollection | orderBy:'name' track by game.name">
-	<option value="">Select game</option>
-	<!-- <option ng-repeat="game in houseCollection">{{ game.name }} ({{ game.yearpublished }})</option> -->
+	<option value="">Choose a game</option>
 </select>
 {{ selectedGame.name }}
 
@@ -18,13 +17,13 @@
 	   type="text"
 	   name="bgguser"
 	   value=""
+	   required="required"
 	   placeholder="Enter your BGG username"
 	   ng-model="bggUser">
-	   {{ bggUser }}
+	   {{ matchinfo }}
 
 <button type="submit"
 		class="btn btn-info btn-lg btn-block"
-		ng-click="getBggCollection(bggUser)">Submit</button>
+		>{{ bgginfo.status || "Submit"}}</button>
 </form>
 
-<pre>{{ houseCollection | json }}</pre>

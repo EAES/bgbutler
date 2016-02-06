@@ -7,9 +7,10 @@ angular
 
 	var self = this;
 	var collection = [];
+	var bggName = '';
 
 	this.getCollection = function(bggUser){
-		console.log(bggUser);
+		self.bggName = bggUser
 		self.status = 'Connecting...';
 		var result = '';
 		var promise = $http({
@@ -22,14 +23,14 @@ angular
             }
         });
         
-        promise.then(function success(response, bggUser) {
-
+        promise.then(function success(response) {
+        	console.log(self.bggName);
         	// response.status = 202;
         	if (response.status === 202) {
         		// console.log('let\'s try again...');
         		self.status = 'Please wait...';
         		$timeout(function() {
-        			self.getCollection(bggUser);
+        			self.getCollection(bggName);
         		}, 500);
 
         	} else if($(response.data).find('items').attr('totalitems') === '0') {

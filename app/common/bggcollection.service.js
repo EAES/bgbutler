@@ -30,11 +30,11 @@ angular
         		// console.log('let\'s try again...');
         		self.status = 'Please wait...';
         		$timeout(function() {
-        			self.getCollection(bggName);
+        			self.getCollection(self.bggName);
         		}, 500);
 
         	} else if($(response.data).find('items').attr('totalitems') === '0') {
-        		// console.log('no games found');
+        		console.log(response.data);
         		self.status = 'No games found';
 
         	} else if ($(response.data).find('errors').find('error').find('message').text() === "Invalid username specified") {
@@ -47,7 +47,7 @@ angular
             
         }, function error(response) {
             // $log.error(response.data);
-            self.status = response.status;
+            self.status = "Error, please try again";
             $log.error(response.status);
         	}
         );

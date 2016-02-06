@@ -3,6 +3,7 @@
 <form class="form-grop" ng-submit="getBggCollection(bggUser)">
 
 <select class="form-control input-lg"
+		id="gameselect"
 		ng-model="selectedGame"
 		ng-options="game.name for game in houseCollection | orderBy:'name' track by game.name">
 	<option value="">{{ personalGreeting || "Choose a game" }}</option>

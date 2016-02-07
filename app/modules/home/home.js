@@ -35,6 +35,15 @@ angular
 		var localHouseCollectionCacheTime = localStorageService.get("localHouseCollectionCacheTime");
 		var today = Math.floor((Date.now()/60000)/60);
 
+		var getLocal = function(){
+			homeService.getCollection().then(function(response){
+				$scope.houseCollection =  response.data;
+				mainCollection = response.data;
+				console.log('saving collection to localstorage');
+				localStorageService.set("localHouseCollection", response.data);
+				localStorageService.set("localHouseCollectionCacheTime", Math.floor((Date.now()/60000)/60));
+			});
+		}
 
 		if(localHouseCollection !== null){
 
@@ -44,18 +53,15 @@ angular
 				localStorageService.remove("localHouseCollectionCacheTime");
 
 				console.log('loading new collection with timestamp');
-				homeService.getCollection().then(function(response){
-					$scope.houseCollection =  response.data;
-					mainCollection = response.data;
-					console.log('saving collection to localstorage');
-					localStorageService.set("localHouseCollection", response.data);
-					localStorageService.set("localHouseCollectionCacheTime", Math.floor((Date.now()/60000)/60));
-				});
+				getLocal();
+				
 			} else {
 				console.log('loading collection from localStorage');
-				$scope.houseCollection =  localHouseCollection;
-				mainCollection = localHouseCollection;
+				$scope.houseCollection =  mainCollection = localHouseCollection;
 			}
+		} else if (localHouseCollection === null) {
+			getLocal();
+
 		}
 
 		

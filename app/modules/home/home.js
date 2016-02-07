@@ -86,18 +86,16 @@ angular
 						$scope.houseCollection = mainCollection;
 						$scope.matchInfo = 'Sorry, we don\'t have any of your games right now.';
 
-					} if(($scope.houseCollection).length > 0 && bggService.status === ''){
+					} else if(($scope.houseCollection).length > 0 && bggService.status === ''){
 						$("#gameselect").prop("selectedIndex", 0);
-
 					} else if(
 						bggService.status === 'Invalid username' || 'No games found'){
 							$scope.personalGreeting = '';
 							$scope.houseCollection = mainCollection;
-
 					} else {
 						$scope.matchInfo = '';
 					}
-				})
+				});
 
 		}
 }]);

@@ -64,20 +64,11 @@ angular
 
 		}
 
+		var localBggCollection = localStorageService.get("localBggCollection");
+		var localBggCollectionCacheTime = localStorageService.get("localBggCollectionCacheTime");
 		
-		
-
-		$scope.getBggCollection = function(){
-
-			//check for bgg collection in localstorage
-			//if older than a day purge and download new one
-			//else load collection from localstorage
-
-			$scope.bggInfo = bggService;
-			$scope.matchInfo = '';
-			
+		var getBgg = function(){
 			bggService.getCollection($scope.bggUser)
-
 				.then(function(response){
 					
 					var arrA = mainCollection;
@@ -86,6 +77,8 @@ angular
 
 					$scope.houseCollection = matchService.getMatches(arrA, arrB);
 					$scope.personalGreeting = (user + "\'s games");
+					localStorageService.set("localBggCollection", $scope.houseCollection);
+					localStorageService.set("localBggCollectionCacheTime", Math.floor((Date.now()/60000)/60));
 
 					if(($scope.houseCollection).length === 0 && bggService.status === ''){
 						$scope.personalGreeting = '';
@@ -102,6 +95,28 @@ angular
 						$scope.matchInfo = '';
 					}
 				});
+		};
+
+		$scope.getBggCollection = function(){
+			$scope.bggInfo = bggService;
+			$scope.matchInfo = '';
+			
+			if(localBggCollection !== null){
+				if (localBggCollectionCacheTime >= (today+1) ) {
+					console.log('bggcollection is too old, deleting...');
+					localStorageService.remove("localBggCollection");
+					localStorageService.remove("localBggCollectionCacheTime");
+
+					console.log('loading new collection with timestamp');
+					getBgg();
+				} else {
+					console.log('loading bggcollection from localStorage');
+					$scope.houseCollection = localBggCollection;
+				}
+			} else if (localBggCollection === null){
+				getBgg();
+			}
+			
 
 		}
 }]);

@@ -31,6 +31,7 @@ angular
 		){
 
 		var mainCollection = [];
+		var user = bggService.bggName;
 		var localHouseCollection = localStorageService.get("localHouseCollection");
 		var localHouseCollectionCacheTime = localStorageService.get("localHouseCollectionCacheTime");
 		var today = Math.floor((Date.now()/60000)/60);
@@ -64,8 +65,7 @@ angular
 
 		}
 
-		var localBggCollection = localStorageService.get("localBggCollection");
-		var localBggCollectionCacheTime = localStorageService.get("localBggCollectionCacheTime");
+		
 		
 		var getBgg = function(){
 			bggService.getCollection($scope.bggUser)
@@ -77,8 +77,8 @@ angular
 
 					$scope.houseCollection = matchService.getMatches(arrA, arrB);
 					$scope.personalGreeting = (user + "\'s games");
-					localStorageService.set("localBggCollection", $scope.houseCollection);
-					localStorageService.set("localBggCollectionCacheTime", Math.floor((Date.now()/60000)/60));
+					localStorageService.set(user+"localBggCollection", $scope.houseCollection);
+					localStorageService.set(user+"localBggCollectionCacheTime", Math.floor((Date.now()/60000)/60));
 
 					if(($scope.houseCollection).length === 0 && bggService.status === ''){
 						$scope.personalGreeting = '';
@@ -100,6 +100,10 @@ angular
 		$scope.getBggCollection = function(){
 			$scope.bggInfo = bggService;
 			$scope.matchInfo = '';
+			var user = $scope.bggUser;
+			var localBggCollection = localStorageService.get(user+"localBggCollection");
+			console.log(user);
+			var localBggCollectionCacheTime = localStorageService.get(user+"localBggCollectionCacheTime");
 			
 			if(localBggCollection !== null){
 				if (localBggCollectionCacheTime >= (today+1) ) {

@@ -49,6 +49,7 @@ angular
             // $log.error(response.data);
             self.status = "Error, please try again";
             $log.error(response.status);
+            $log.error(response);
         	}
         );
 		

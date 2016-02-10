@@ -10,6 +10,14 @@ angular
 					url: "/",
 					templateUrl: 'app/modules/home/home.html',
 					controller: 'HomeController'
+				})
+				.state('home.selectedgame',{
+					url: ":name",
+					views: {
+						'serving-area@home': {
+							templateUrl: function(params) {return 'data/' + params.name + '.html'; }
+						}
+					}
 				});
 
 	}])
@@ -21,13 +29,17 @@ angular
 		'localStorageService',
 		'$scope',
 		'$log',
+		'$location',
+		'$state',
 		function(
 			homeService,
 			bggService,
 			matchService,
 			localStorageService,
 			$scope,
-			$log
+			$log,
+			$location,
+			$state
 		){
 
 		var mainCollection = [];
@@ -102,7 +114,6 @@ angular
 			$scope.matchInfo = '';
 			var user = $scope.bggUser;
 			var localBggCollection = localStorageService.get(user+"localBggCollection");
-			console.log(user);
 			var localBggCollectionCacheTime = localStorageService.get(user+"localBggCollectionCacheTime");
 			
 			if(localBggCollection !== null){
@@ -123,6 +134,20 @@ angular
 			
 
 		}
+
+		$scope.gameChange = function(){
+			if($scope.selectedGame !== null){
+				var location = $scope.selectedGame.name;
+				console.log('ding!');
+				
+				if (location){
+					$state.go('home.selectedgame',{name: location.replace(/\s/g, '-').replace(/:/g, '').toLowerCase()});
+				}
+			}
+		}
+
+
+		
 }]);
 
 })();

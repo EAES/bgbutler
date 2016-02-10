@@ -103,6 +103,8 @@ angular
 						bggService.status === 'Invalid username' || 'No games found'){
 							$scope.personalGreeting = '';
 							$scope.houseCollection = mainCollection;
+					} else if (bggService.status === 'Error, please try again'){
+						localStorageService.remove(user+"localBggCollection");
 					} else {
 						$scope.matchInfo = '';
 					}
@@ -126,7 +128,10 @@ angular
 					getBgg();
 				} else {
 					console.log('loading bggcollection from localStorage');
+					
+					$scope.personalGreeting = (user + "\'s games");
 					$scope.houseCollection = localBggCollection;
+					$("#gameselect").prop("selectedIndex", 0);
 				}
 			} else if (localBggCollection === null){
 				getBgg();

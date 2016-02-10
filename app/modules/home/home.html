@@ -1,19 +1,24 @@
-<h1>Welcome to BoardGameButler</h1>
+<a href="/"><h1 id="title">Welcome to BoardGameButler<sup>&#8482;</sup></h1></a>
+<small>A website that helps you set up your favorite board games</small>
 			
-<form class="form-grop" ng-submit="getBggCollection(bggUser)">
-
 <select class="form-control input-lg"
 		id="gameselect"
 		ng-model="selectedGame",
 		ng-change="gameChange()"
 		ng-options="game.name for game in houseCollection | orderBy:'name' track by game.name">
-	<option value="">{{ personalGreeting || "Choose a game" }}</option>
+	<option value="">{{ personalGreeting || "Please choose a game" }}</option>
 </select>
-{{ selectedGame.name }}
 
 <hr />
 
-<h6>or connect to your BGG account</h6>
+<a href="#"
+	id="bggconnect"
+	ng-click="connectbgg = !connectbgg"
+	>or connect to your BGG account</a>
+
+<form class="form-grop"
+	  ng-submit="getBggCollection(bggUser)"
+	  ng-show="connectbgg">
 
 <input class="form-control input-lg" 
 	   type="text"

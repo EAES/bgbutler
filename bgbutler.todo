@@ -1,0 +1,44 @@
+0.5 public release:
+  ✔ prevent select from refreshing @high @done (15-08-07 18:22)
+  ☐ small screen styles
+  ☐ prevent select zoom on iphone @high
+  ✔ buy domain + web space @low @done (15-08-07 15:14)
+  ✔ clear local storage on main route @high @done (15-08-09 10:57)
+  ✔ store bgg collection in localstorage @done (15-08-09 18:32)
+  ✔ check for bgg collection in location storage before another query @done (15-08-09 18:32)
+  ✔ compare collection arrays and return matches @done (15-08-10 16:24)
+  ✔ don't further intersect games data after initial @done (15-08-11 09:38)
+
+1.0 release:
+  ✔ stop flicker of angular content @critical @done (15-08-07 12:26)
+  ☐ remove devel code from app
+  ☐ load select from route
+  ☐ lose author info on refresh @high
+  ✔ lose bgg collection on refresh @low @done (16-02-09 21:45)
+  ✔ set cache timeout for game collections @done (16-02-09 21:45)
+  ✘ solve constant 503 errors from cors anywhere - maybe switch to JSONP or selfhost @cancelled (16-02-09 21:45)
+  ☐ add top and side menus
+  ☐ submission guidelines and FAQ
+  ✔ show loading for main content @done (15-08-12 12:45)
+  ✔ stop $compile:tpload error @done (16-02-09 21:45)
+
+future enhancements:
+  ☐ add image of complete set up @low
+  ☐ commonly forgotten rules
+  ☐ end game scoring
+  ✔ query BGG api for user collection @done (15-08-09 11:34)
+  ☐ waypoints sticky select @low
+  ☐ fade in content
+
+initial seed games:
+  ✔ power grid @done (15-08-07 11:02)
+  ☐ pandemic
+  ☐ among the stars
+  ☐ medina
+  ☐ keyflower
+  ☐ dominant species
+  ☐ five tribes
+  ☐ caverna
+  ☐ whitechapel
+  ☐ ghost stories
+  ☐ paperback 

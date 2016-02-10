@@ -1,0 +1,24 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis:800);
+
+h1#title{
+	font-family: 'Dosis', sans-serif;
+	font-size: 28pt;
+}
+
+h1#title sup{
+	font-size: 16pt;
+	line-height: 30%;
+}
+
+.input-lg{
+	margin: .5em 0 1em 0;
+}
+
+#bggconnect{
+	display: block;
+	text-align: center;
+}
+
+a,a:hover,a:focus, a:active, a:visited{
+	text-decoration: none;
+}

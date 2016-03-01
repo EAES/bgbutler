@@ -67,7 +67,7 @@ angular
 
 				console.log('loading new collection with timestamp');
 				getLocal();
-				
+
 			} else {
 				console.log('loading collection from localStorage');
 				$scope.houseCollection =  mainCollection = localHouseCollection;
@@ -77,12 +77,12 @@ angular
 
 		}
 
-		
-		
+
+
 		var getBgg = function(){
 			bggService.getCollection($scope.bggUser)
 				.then(function(response){
-					
+
 					var arrA = mainCollection;
 					var arrB = bggService.putInCollection(response.data);
 					var user = bggService.bggName;
@@ -91,6 +91,7 @@ angular
 					$scope.personalGreeting = (user + "\'s games");
 					localStorageService.set(user+"localBggCollection", $scope.houseCollection);
 					localStorageService.set(user+"localBggCollectionCacheTime", Math.floor((Date.now()/60000)/60));
+					$scope.connectbgg = false;
 
 					if(($scope.houseCollection).length === 0 && bggService.status === ''){
 						$scope.personalGreeting = '';
@@ -117,7 +118,7 @@ angular
 			var user = $scope.bggUser;
 			var localBggCollection = localStorageService.get(user+"localBggCollection");
 			var localBggCollectionCacheTime = localStorageService.get(user+"localBggCollectionCacheTime");
-			
+
 			if(localBggCollection !== null){
 				if (localBggCollectionCacheTime >= (today+1) ) {
 					console.log('bggcollection is too old, deleting...');
@@ -128,15 +129,16 @@ angular
 					getBgg();
 				} else {
 					console.log('loading bggcollection from localStorage');
-					
+
 					$scope.personalGreeting = (user + "\'s games");
 					$scope.houseCollection = localBggCollection;
 					$("#gameselect").prop("selectedIndex", 0);
+					$scope.connectbgg = false;
 				}
 			} else if (localBggCollection === null){
 				getBgg();
 			}
-			
+
 
 		}
 
@@ -144,7 +146,7 @@ angular
 			if($scope.selectedGame !== null){
 				var location = $scope.selectedGame.name;
 				console.log('ding!');
-				
+
 				if (location){
 					$state.go('home.selectedgame',{name: location.replace(/\s/g, '-').replace(/:/g, '').toLowerCase()});
 				}
@@ -152,7 +154,7 @@ angular
 		}
 
 
-		
+
 }]);
 
 })();

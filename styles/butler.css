@@ -2,12 +2,16 @@
 
 h1#title{
 	font-family: 'Dosis', sans-serif;
-	font-size: 28pt;
+	font-size: 16pt;
 }
 
 h1#title sup{
-	font-size: 16pt;
+	font-size: 8pt;
 	line-height: 30%;
+}
+
+small#intro{
+	font-size: 8pt;
 }
 
 .input-lg{
